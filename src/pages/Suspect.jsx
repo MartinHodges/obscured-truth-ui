@@ -17,6 +17,7 @@ import {
 } from '../store/games/actions'
 import { useState } from 'react';
 import PollGameDetails from '../containers/PollGameDetails';
+import TimeLeft from '../components/TimeLeft';
 
 export function Suspect({
     doRecordFacts,
@@ -82,7 +83,7 @@ export function Suspect({
             <Box m={4}>
                 <Box mt={4} display='flex' justifyContent='space-between'>
                     <h1>Your suspect statement</h1>
-                    <h2>{gameDetails?.round.questionTimeLeft}</h2>
+                    <TimeLeft timeSince={gameDetails?.round.questionTimeLeft} maxTime={120} timeExpired={() => setTimeExpired(true)} />
                 </Box>
                 <h2>Suspect: {gameDetails?.round?.suspect.name}</h2>
                 <Typography>Describe your 3 statements</Typography>

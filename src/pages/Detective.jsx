@@ -83,7 +83,7 @@ function Detective({
             <Box m={4}>
                 <Box mt={4} display='flex' justifyContent='space-between'>
                     <h1>Detective</h1>
-                    <TimeLeft timeSince={gameDetails?.round.questionTimeLeft} maxTime={60} timeExpired={() => setTimeExpired(true)} />
+                    <TimeLeft timeSince={gameDetails?.round.questionTimeLeft} maxTime={120} timeExpired={() => setTimeExpired(true)} />
                 </Box>
                 <Typography>Listen to the suspect's statments and decide which are the truth and which are made up.  Record your answers here and press <b>Send Deductions</b>.</Typography>
                 <Box mt={1}>
