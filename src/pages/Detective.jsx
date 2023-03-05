@@ -85,7 +85,7 @@ function Detective({
                     <h1>Detective</h1>
                     <TimeLeft timeSince={gameDetails?.round.questionTimeLeft} maxTime={120} timeExpired={() => setTimeExpired(true)} />
                 </Box>
-                <Typography>Listen to the suspect's statments and decide which are the truth and which are made up.  Record your answers here and press <b>Send Deductions</b>.</Typography>
+                <Typography>You have 2 minutes to listen to the suspect's statements and question them to decide which are the truth and which are made up.  After questioning them, record your answers here and press <b>Send Deductions</b>.</Typography>
                 <Box mt={1}>
                     <Typography>Remember there are bonus points for who answered first but, once submitted, you cannot change your answers.</Typography>
                 </Box>
