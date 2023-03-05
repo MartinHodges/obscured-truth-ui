@@ -13,29 +13,29 @@ import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import routes from '../routes';
 import Header from '../components/Header';
 import {
-    fetchGameByUuid,
     recordFacts,
 } from '../store/games/actions'
-import {
-    selectGameDetails
-} from '../store/games/selectors'
 import { useState } from 'react';
+import PollGameDetails from '../containers/PollGameDetails';
 
 export function Suspect({
-    doFetchGameByUuid,
     doRecordFacts,
-    gameDetails,
 }) {
 
     const navigate = useNavigate();
 
+    const [gameDetails, setGameDetails] = useState();
+
     const [dto, setDto] = useState({
         fact1: '',
         truth1: false,
+        truth1Set: false,
         fact2: '',
         truth2: false,
+        truth2Set: false,
         fact3: '',
         truth3: false,
+        truth3Set: false,
     })
 
     const startInterview = () => {
@@ -65,11 +65,11 @@ export function Suspect({
     }
 
     const makeTrue = (fact) => {
-        setDto({...dto, [fact]: true})
+        setDto({...dto, [fact]: true, [fact + 'Set']: true})
     }
 
     const makeFalse = (fact) => {
-        setDto({...dto, [fact]: false})
+        setDto({...dto, [fact]: false, [fact + 'Set']: true})
     }
 
     const deductions = gameDetails?.round?.numberDeductions || 0
@@ -77,10 +77,12 @@ export function Suspect({
 
     return (
         <Box>
+            <PollGameDetails updateGameDetails={setGameDetails} />
             <Header />
             <Box m={4}>
-                <Box mt={4}>
+                <Box mt={4} display='flex' justifyContent='space-between'>
                     <h1>Your suspect statement</h1>
+                    <h2>{gameDetails?.round.questionTimeLeft}</h2>
                 </Box>
                 <h2>Suspect: {gameDetails?.round?.suspect.name}</h2>
                 <Typography>Describe your 3 statements</Typography>
@@ -102,13 +104,13 @@ export function Suspect({
                                 <Box mr='48px' display='flex' alignItems='center'>
                                     Truth
                                     <IconButton onClick={() => makeTrue('truth1')}>
-                                       {dto.truth1 ? <RadioButtonCheckedIcon /> : <RadioButtonUncheckedIcon />}
+                                       {dto.truth1Set && dto.truth1 ? <RadioButtonCheckedIcon /> : <RadioButtonUncheckedIcon />}
                                     </IconButton>
                                 </Box>
                                 <Box display='flex' alignItems='center'>
                                     Made Up
                                     <IconButton onClick={() => makeFalse('truth1')}>
-                                       {!dto.truth1 ? <RadioButtonCheckedIcon /> : <RadioButtonUncheckedIcon />}
+                                       {dto.truth1Set && !dto.truth1 ? <RadioButtonCheckedIcon /> : <RadioButtonUncheckedIcon />}
                                     </IconButton>
                                 </Box>
                             </Box>
@@ -122,13 +124,13 @@ export function Suspect({
                                 <Box mr='48px' display='flex' alignItems='center'>
                                     Truth
                                     <IconButton onClick={() => makeTrue('truth2')}>
-                                        {dto.truth2 ? <RadioButtonCheckedIcon /> : <RadioButtonUncheckedIcon />}
+                                        {dto.truth2Set && dto.truth2 ? <RadioButtonCheckedIcon /> : <RadioButtonUncheckedIcon />}
                                     </IconButton>
                                 </Box>
                                 <Box display='flex' alignItems='center'>
                                     Made Up
                                     <IconButton onClick={() => makeFalse('truth2')}>
-                                        {!dto.truth2 ? <RadioButtonCheckedIcon /> : <RadioButtonUncheckedIcon />}
+                                        {dto.truth2Set && !dto.truth2 ? <RadioButtonCheckedIcon /> : <RadioButtonUncheckedIcon />}
                                     </IconButton>
                                 </Box>
                             </Box>
@@ -142,13 +144,13 @@ export function Suspect({
                                 <Box mr='48px' display='flex' alignItems='center'>
                                     Truth
                                     <IconButton onClick={() => makeTrue('truth3')}>
-                                        {dto.truth3 ? <RadioButtonCheckedIcon /> : <RadioButtonUncheckedIcon />}
+                                        {dto.truth3Set && dto.truth3 ? <RadioButtonCheckedIcon /> : <RadioButtonUncheckedIcon />}
                                     </IconButton>
                                 </Box>
                                 <Box display='flex' alignItems='center'>
                                     Made Up
                                     <IconButton onClick={() => makeFalse('truth3')}>
-                                        {!dto.truth3 ? <RadioButtonCheckedIcon /> : <RadioButtonUncheckedIcon />}
+                                        {dto.truth3Set && !dto.truth3 ? <RadioButtonCheckedIcon /> : <RadioButtonUncheckedIcon />}
                                     </IconButton>
                                 </Box>
                             </Box>
@@ -156,7 +158,9 @@ export function Suspect({
                     </Grid>
                 </Grid>
                 <Box mt='24px'>
-                    <Button variant='contained' onClick={startInterview}>Start Interview</Button>
+                    <Button 
+                        disabled={!dto.truth1Set || !dto.truth2Set || !dto.truth3Set}
+                        variant='contained' onClick={startInterview}>Start Interview</Button>
                 </Box>
             </Box>
         </Box>
@@ -164,29 +168,27 @@ export function Suspect({
 }
 
 const mapStateToProps = createStructuredSelector({
-    gameDetails: selectGameDetails(),
-  });
+});
   
-  const mapDispatchToProps = {
-    doFetchGameByUuid: fetchGameByUuid,
+const mapDispatchToProps = {
     doRecordFacts: recordFacts,
-  }
-  
-  const withConnect = connect(
+}
+
+const withConnect = connect(
     mapStateToProps,
     mapDispatchToProps,
-  );
-  
-  export default withConnect(Suspect);
+);
 
-  const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+export default withConnect(Suspect);
+
+const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     height: 10,
     borderRadius: 5,
     [`&.${linearProgressClasses.colorPrimary}`]: {
-      backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+        backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
     },
     [`& .${linearProgressClasses.bar}`]: {
-      borderRadius: 5,
-      backgroundColor: theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8',
+        borderRadius: 5,
+        backgroundColor: theme.palette.mode === 'light' ? '#1a90ff' : '#308fe8',
     },
-  }));
+}));

@@ -14,6 +14,7 @@ import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import routes from '../routes';
 import PollGameDetails from '../containers/PollGameDetails';
 import { enterDeductions } from '../store/games/actions';
+import TimeLeft from '../components/TimeLeft';
 
 function Detective({
     doEnterDeductions
@@ -28,7 +29,8 @@ function Detective({
 
     const [gameDetails, setGameDetails] = useState()
     const [playerDetails, setPlayerDetails] = useState()
-    const [deductionsSent, setDeductionsSent] = useState(false);
+    const [deductionsSent, setDeductionsSent] = useState(false)
+    const [timeExpired, setTimeExpired] = useState(false);
 
     const deductions = gameDetails?.round?.numberDeductions || 0
     const detectives = gameDetails?.round?.numberDetectives || 1
@@ -79,7 +81,10 @@ function Detective({
             </Box>
 
             <Box m={4}>
-                <h1>Detective</h1>
+                <Box mt={4} display='flex' justifyContent='space-between'>
+                    <h1>Detective</h1>
+                    <TimeLeft timeSince={gameDetails?.round.questionTimeLeft} maxTime={60} timeExpired={() => setTimeExpired(true)} />
+                </Box>
                 <Typography>Listen to the suspect's statments and decide which are the truth and which are made up.  Record your answers here and press <b>Send Deductions</b>.</Typography>
                 <Box mt={1}>
                     <Typography>Remember there are bonus points for who answered first but, once submitted, you cannot change your answers.</Typography>
@@ -157,7 +162,7 @@ function Detective({
 
                 </Grid>
                 <Box mt='24px'>
-                    <Button disabled={!factsSet || deductionsSent} variant='contained' onClick={sendDeductions}>Send Deductions</Button>
+                    <Button disabled={!factsSet || deductionsSent || !timeExpired} variant='contained' onClick={sendDeductions}>Send Deductions</Button>
                 </Box>
             </Box>
         </Box>

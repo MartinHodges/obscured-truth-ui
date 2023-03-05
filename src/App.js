@@ -17,7 +17,6 @@ import RegisterAsPlayer from './pages/RegisterAsPlayer';
 import Preload from './containers/Preload';
 import GameResults from './pages/GameResults';
 import RoundResults from './pages/RoundResults';
-import Home from './pages/Home';
 
 function App() {
   return (
@@ -26,7 +25,6 @@ function App() {
       <Preload>
         <BrowserRouter>
           <Routes>
-            <Route path={routes.home} element={<Home />} />
             <Route path={routes.registerGame} element={<RegisterGame />} />
             <Route path={routes.registerPlayers + "/:gameId"} element={<RegisterPlayers />} />
             <Route path={routes.playGame} element={<Play />} />
@@ -38,7 +36,7 @@ function App() {
             <Route path={routes.gameResults} element={<GameResults />} />
             <Route path={routes.roundResults} element={<RoundResults />} />
             <Route path={routes.scoreboard} element={<Scoreboard />} />
-            <Route path={routes.registerAsPlayer + "/:gameId?"} element={<RegisterAsPlayer />} />
+            <Route path={routes.registerAsPlayer} element={<RegisterAsPlayer />} />
           </Routes>
         </BrowserRouter>
       </Preload>

@@ -8,7 +8,7 @@ const routes = {
     playGame: '/play',
     registerGame: '/register-game',
     registerPlayers: '/register-players',
-    registerAsPlayer: '/register-as-player',
+    registerAsPlayer: '/',
     registerGame: '/register-game',
     roundResults: '/round-results',
     scoreboard: '/scoreboard',

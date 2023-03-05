@@ -37,10 +37,14 @@ export function RegisterAsPlayer({
         }
     }, [gameId])
 
-    const findTeam = () => {
+    const findGame = () => {
         if (dto.pin) {
             doFetchGameByPin(dto.pin)
         }
+    }
+
+    const newGame = () => {
+        navigate(routes.registerGame)
     }
 
     const joinTeam = () => {
@@ -87,7 +91,7 @@ export function RegisterAsPlayer({
                             </Grid>
                         </Box> 
 
-                        <Button onClick={joinTeam} variant='contained' sx={{marginTop: '24px'}}>Join Team</Button>
+                        <Button onClick={joinTeam} variant='contained' sx={{marginTop: '24px'}}>Join Game</Button>
                     </>
                 ) : (
                     <>
@@ -110,7 +114,10 @@ export function RegisterAsPlayer({
                                 </Grid>
                             </Grid>
                         </Box> 
-                        <Button onClick={findTeam} variant='contained' sx={{marginTop: '24px'}}>find Team</Button>
+                        <Box display="flex">
+                            <Button disabled={!dto.pin || !dto.pin.length} onClick={findGame} variant='contained' sx={{marginTop: '24px'}}>Find Game</Button>
+                            <Button onClick={newGame} variant='outlined' sx={{ml: '24px', marginTop: '24px'}}>Create Game</Button>
+                        </Box>
                     </>
                 )}  
             </Box>
