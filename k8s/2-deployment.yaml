@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: obscure-truth-ui
-        image: martinhodges/obscured-truth-ui:03
+        image: martinhodges/obscured-truth-ui:05
         ports:
         - containerPort: 80
 
