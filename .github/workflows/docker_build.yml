@@ -55,5 +55,5 @@ jobs:
           context: .
 #          file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/obscured-truth-ui:${{github.run_number}}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/obscured-truth-ui:${{github.run_number}}, ${{ secrets.DOCKERHUB_USERNAME }}/obscured-truth-ui:latest
 
