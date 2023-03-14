@@ -61,7 +61,7 @@ jobs:
         run: |
           mkdir ui-k8s
           cp k8s/* ui-k8s
-          sed sed -i 's/image: martinhodges\/obscured-truth-ui:.*/image: martinhodges\/obscured-truth-ui:"${{github.run_number}}"/g' ui-k8s/2-deployment.yaml
+          ui-k8s/update_version.sh ui-k8s/2-deployment.yaml ${{github.run_number}}
       - name: Push to deployment repo
         uses: cpina/github-action-push-to-another-repository@main
         env:
