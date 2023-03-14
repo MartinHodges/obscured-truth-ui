@@ -60,7 +60,7 @@ jobs:
       - name: Update K8S Config
         run: |
           mkdir ui-k8s
-          copy k8s/* ui-k8s
+          cp k8s/* ui-k8s
       - name: Push to deployment repo
         uses: cpina/github-action-push-to-another-repository@main
         env:
