@@ -1,3 +1,3 @@
 #!/bin/sh
 
-sed -i "s/image: martinhodges\/obscured-truth-ui:.*/image: martinhodges\/obscured-truth-ui:$2/g" $1 
+sed -i "s/\!version/$2/g" $1 
