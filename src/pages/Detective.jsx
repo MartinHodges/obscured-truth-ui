@@ -15,6 +15,7 @@ import routes from '../routes';
 import PollGameDetails from '../containers/PollGameDetails';
 import { enterDeductions } from '../store/games/actions';
 import TimeLeft from '../components/TimeLeft';
+import Header from '../components/Header';
 
 function Detective({
     doEnterDeductions
@@ -76,9 +77,7 @@ function Detective({
     return (
         <Box>
             <PollGameDetails updatePlayerDetails={setPlayerDetails} updateGameDetails={setGameDetails}/>
-            <Box display='flex' justifyContent='center' sx={{minHeight: '48px', backgroundColor: 'purple', color: 'white'}}>
-               <h1>Obscured Truth!</h1>
-            </Box>
+            <Header />
 
             <Box m={4}>
                 <Box mt={4} display='flex' justifyContent='space-between'>

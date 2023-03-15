@@ -12,6 +12,7 @@ import {
     chooseSuspect,
 } from '../store/games/actions'
 import PollGameDetails from '../containers/PollGameDetails';
+import Header from '../components/Header';
 
 
 export function ChooseSuspect({
@@ -42,9 +43,7 @@ export function ChooseSuspect({
     return (
         <Box>
             <PollGameDetails updateGameDetails={setGameDetails} updatePlayerDetails={setPlayerDetails} />
-            <Box display='flex' justifyContent='center' sx={{minHeight: '48px', backgroundColor: 'purple', color: 'white'}}>
-               <h1>Obscured Truth!</h1>
-            </Box>
+            <Header />
 
             <Box m={4}>
                 

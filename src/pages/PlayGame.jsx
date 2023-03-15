@@ -11,6 +11,7 @@ import GivingScenario from '../components/GivingScenario'
 import Questioning from '../components/Questioning'
 import Guessing from '../components/Guessing'
 import Complete from '../components/Complete'
+import Header from '../components/Header'
 
 export default function Home() {
 
@@ -60,9 +61,7 @@ export default function Home() {
 
     return (
         <Box>
-            <Box display='flex' justifyContent='center' sx={{minHeight: '48px', backgroundColor: 'purple', color: 'white'}}>
-               <h1>Obscured Truth!</h1>
-            </Box>
+            <Header />
 
             <Box m={4}>
                 {gamePanel()}

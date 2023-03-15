@@ -16,6 +16,7 @@ import {
 import {
     selectGameDetails
 } from '../store/games/selectors'
+import Header from '../components/Header';
 
 export function RegisterAsPlayer({
     doFetchGameByUuid,
@@ -64,9 +65,7 @@ export function RegisterAsPlayer({
 
     return (
         <Box>
-            <Box display='flex' justifyContent='center' sx={{minHeight: '48px', backgroundColor: 'purple', color: 'white'}}>
-               <h1>Obscured Truth!</h1>
-            </Box>
+            <Header />
 
             <Box m={4}>
                 {gameDetails ? (

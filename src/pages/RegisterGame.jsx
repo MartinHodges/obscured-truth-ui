@@ -12,6 +12,7 @@ import {
     registerGame
 } from '../store/games/actions'
 import PollGameDetails from '../containers/PollGameDetails';
+import Header from '../components/Header';
 
 export function RegisterGame({
     doRegisterGame,
@@ -51,9 +52,7 @@ export function RegisterGame({
     return (
         <Box>
             <PollGameDetails updateGameDetails={setGameDetails} />
-            <Box display='flex' justifyContent='center' sx={{minHeight: '48px', backgroundColor: 'purple', color: 'white'}}>
-               <h1>Obscured Truth!</h1>
-            </Box>
+            <Header />
 
             <Box m={4}>
                 <h1>Register Game</h1>
