@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 name: docker_build
-run_name: Build Obscured Truth UI (build version: ${{github.run_number}})
+run_name: 'Build Obscured Truth UI (build version: ${{github.run_number}})'
 
 # Controls when the action will run.
 on:
