@@ -1,5 +1,5 @@
 name: 'Deploy'
-run-name: 'Deploy Obscured Truth UI (build version: ${{github.run_number}})'
+run-name: 'Deploy Obscured Truth UI (build version: ${{github.event.inputs.dockerTag}})'
 
 # Controls when the action will run.
 on:
