@@ -59,15 +59,16 @@ jobs:
 
       - name: Update K8S Config
         run: |
-          mkdir ui-k8s
-          cp k8s/* ui-k8s
-          ui-k8s/update_version.sh ui-k8s/2-deployment.yaml ${{github.run_number}}
+          mkdir k8s
+          mkdir k8s/ui
+          cp k8s/* k8s/ui
+          k8s/ui/update_version.sh k8s/ui/2-deployment.yaml ${{github.run_number}}
       - name: Push to deployment repo
         uses: cpina/github-action-push-to-another-repository@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-directory: 'ui-k8s'
+          source-directory: 'k8s'
           destination-github-username: 'MartinHodges'
           destination-repository-name: 'obscured-truth-k8s'
           user-email: martin.hodges@requillion-solutions.com
