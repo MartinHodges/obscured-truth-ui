@@ -22,6 +22,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: martinhodges/obscured-truth-k8s
+          ref: main
 
       - name: Update K8S Config
         run: |
