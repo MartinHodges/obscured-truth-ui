@@ -21,7 +21,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
         with:
-          repository: martinhodges/obscured-truth-k8s
+          repository: MartinHodges/obscured-truth-k8s
           ref: main
 
       - name: Update K8S Config
