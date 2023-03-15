@@ -1,4 +1,4 @@
-name: docker_build
+name: 'Deploy'
 run_name: 'Deploy Obscured Truth UI (build version: ${{github.run_number}})'
 
 # Controls when the action will run.
