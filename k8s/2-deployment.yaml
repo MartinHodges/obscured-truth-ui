@@ -1,3 +1,4 @@
+# Creates the Obscured Truth UI deployment
 kind: Deployment
 apiVersion: apps/v1
 metadata:

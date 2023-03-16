@@ -58,5 +58,33 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/obscured-truth-ui:${{github.run_number}}, ${{ secrets.DOCKERHUB_USERNAME }}/obscured-truth-ui:latest
 
+      - name: Copy k8s config
+        run: |
+          mkdir /tmp/k8s
+          cp k8s/* /tmp/k8s
+
+      - name: Fetch k8s repo
+        - uses: actions/checkout@v3
+          with:
+            repository: MartinHodges/obscured-truth-k8s
+            ref: main
+            token: ${{secrets.my_pat}}
+
+      - name: Update
+        run: |
+           cp /tmp/k8s/* ui
+
+      - name: Push to deployment repo
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.my_pat }}
+        with:
+          source-directory: '.'
+          destination-github-username: 'MartinHodges'
+          destination-repository-name: 'obscured-truth-k8s'
+          user-email: martin.hodges@requillion-solutions.com
+          target-branch: main
+
+        
 
 
