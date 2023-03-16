@@ -23,6 +23,7 @@ jobs:
         with:
           repository: MartinHodges/obscured-truth-k8s
           ref: main
+          token: ${{secrets.my_pat}}
 
       - name: Update K8S Config
         run: |
