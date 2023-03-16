@@ -64,11 +64,11 @@ jobs:
           cp k8s/* /tmp/k8s
 
       - name: Fetch k8s repo
-        - uses: actions/checkout@v3
-          with:
-            repository: MartinHodges/obscured-truth-k8s
-            ref: main
-            token: ${{secrets.my_pat}}
+        uses: actions/checkout@v3
+        with:
+          repository: MartinHodges/obscured-truth-k8s
+          ref: main
+          token: ${{secrets.my_pat}}
 
       - name: Update
         run: |
